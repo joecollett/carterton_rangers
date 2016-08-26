@@ -1,0 +1,22 @@
+<div class="row">
+	<section class="col-xs-12">
+		<form name="myForm" novalidate
+		ng-submit="login()">
+			<div class="textintro">
+				<h1>Hi there</h1>
+				<p>Please Login</p>
+				<p ng-show="message">{{message}}</p>
+			</div>
+			<fieldset>
+				<input type="email" name="email" class="form-control" placeholder="Email" ng-model="user.email" ng-required="true">
+				<p ng-show="myForm.email.$invalid && myForm.email.$touched">Email is not valid</p>
+
+				<input type="password" name="password" class="form-control" placeholder="Password" ng-model="user.password" ng-required="true">
+				<p ng-show="myForm.password.$invalid && myForm.password.$touched">Password is not valid</p>
+			</fieldset>
+
+			<button type="submit" class="btn-default btn" ng-disabled="myForm.$invalid">Login</button>
+			<p> or 	<a ng-href="#/register">Register</a></p>
+		</form>
+	</section>
+</div>
