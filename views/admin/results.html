@@ -335,7 +335,7 @@
 
 		<div class="row">
 			<div class="col-xs-12">
-				<select ng-options="player as player.fullname for player in players" ng-model="sub1" ng-required="true" class="form-control">
+				<select ng-options="player as player.fullname for player in players" ng-model="sub1" class="form-control">
 				</select>
 				<button type="button" ng-click="showSubStats1 = !showSubStats1" class="btn btn-default">Stats 11</button>
 				<div class="row" ng-show="showSubStats1">
@@ -343,7 +343,7 @@
 						<div class="well clearfix">
 							<label class="col-sm-2" for="goals11">Did player come on?</label>
 							<div class="col-sm-10">
-								<input type="checkbox" ng-model="subon1" ng-change="findShitOut()" ng-required="true" class="form-control">
+								<input type="checkbox" ng-model="subon1" ng-change="findShitOut()" class="form-control">
 							</div>	
 							<div ng-show="subon1">	
 								<label class="col-sm-2" for="goals11">On for</label>
@@ -380,7 +380,7 @@
 
 		<div class="row">
 			<div class="col-xs-12">
-				<select ng-options="player as player.fullname for player in players" ng-model="sub2" ng-required="true" class="form-control">
+				<select ng-options="player as player.fullname for player in players" ng-model="sub2" class="form-control">
 				</select>
 				<button type="button" ng-click="showSubStats2 = !showSubStats2" class="btn btn-default">Stats 11</button>
 				<div class="row" ng-show="showSubStats2">
@@ -388,7 +388,7 @@
 						<div class="well clearfix">
 							<label class="col-sm-2" for="goals11">Did player come on?</label>
 							<div class="col-sm-10">
-								<input type="checkbox" ng-model="subon2" ng-change="findShitOut()" ng-required="true" class="form-control">
+								<input type="checkbox" ng-model="subon2" class="form-control">
 							</div>	
 							<div ng-show="subon2">	
 								<label class="col-sm-2" for="goals11">On for</label>
@@ -425,17 +425,17 @@
 
 		<div class="row">
 			<div class="col-xs-12">
-				<select ng-options="player as player.fullname for player in players" ng-model="sub3" ng-required="true" class="form-control">
+				<select ng-options="player as player.fullname for player in players" ng-model="sub3" class="form-control">
 				</select>
 				<button type="button" ng-click="showSubStats3 = !showSubStats3" class="btn btn-default">Stats 11</button>
-				<div class="row" ng-show="showSubStats3">
+				<div class="row" ng-show="showSubStats2">
 					<div class="col-xs-12">
 						<div class="well clearfix">
-							<label class="col-sm-3" for="goals11">Did player come on?</label>
+							<label class="col-sm-2" for="goals11">Did player come on?</label>
 							<div class="col-sm-10">
-								<input type="checkbox" ng-model="subon3" ng-change="findShitOut()" ng-required="true" class="form-control">
+								<input type="checkbox" ng-model="subon3" class="form-control">
 							</div>	
-							<div ng-show="subon3">	
+							<div ng-show="subon2">	
 								<label class="col-sm-2" for="goals11">On for</label>
 								<div class="col-sm-10">
 								 <select ng-model="sub3.playeronfor" ng-options="player as player.fullname for player in starting11">
@@ -472,6 +472,7 @@
 
 		<div class="input-group-btn">
 	  		<button type="submit" class="btn btn-default" ng-disabled="myForm.$invalid">Add Result</button>
+	  		<div class="btn btn-default" ng-click="autopick()">Autopick</div>
 		</div>		  
 		</div>								
 	</div> 

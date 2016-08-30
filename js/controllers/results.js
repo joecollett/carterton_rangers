@@ -15,8 +15,12 @@ myApp.controller('resultsController', ['$scope', '$rootScope','$firebaseAuth', '
 	$scope.players = playersInfo;	
 	$scope.teams = teamsInfo;
 
-	$scope.$watchGroup(['pos1selected', 'pos2selected', 'pos3selected', 'pos4selected', 'pos5selected', 'pos6selected' ,'pos7selected' ,'pos8selected' ,'pos9selected' , 'pos10selected', 'pos11selected', 'sub1', 'sub2', 'sub3'], function(newValues, oldValues, scope) {
-		$scope.starting11 = [$scope.pos1selected, $scope.pos2selected, $scope.pos3selected, $scope.pos4selected, $scope.pos5selected,$scope.pos6selected,$scope.pos7selected,$scope.pos8selected,$scope.pos9selected,$scope.pos10selected,$scope.pos11selected, $scope.sub1, $scope.sub2, $scope.sub3];
+	$scope.subon1 = false;
+	$scope.subon2 = false;
+	$scope.subon3 = false;
+
+	$scope.$watchGroup(['pos1selected', 'pos2selected', 'pos3selected', 'pos4selected', 'pos5selected', 'pos6selected' ,'pos7selected' ,'pos8selected' ,'pos9selected' , 'pos10selected', 'pos11selected', 'sub1', 'sub2', 'sub3', 'subon1', 'subon2', 'subon3'], function(newValues, oldValues, scope) {
+		$scope.starting11 = [$scope.pos1selected, $scope.pos2selected, $scope.pos3selected, $scope.pos4selected, $scope.pos5selected,$scope.pos6selected,$scope.pos7selected,$scope.pos8selected,$scope.pos9selected,$scope.pos10selected,$scope.pos11selected, $scope.sub1, $scope.sub2, $scope.sub3, $scope.subon1, $scope.subon2, $scope.subon3];
 		if($scope.pos1selected){
 			$scope.pos1selected.gameminutes = 90;
 			$scope.pos1selected.gamegoals = 0;	
@@ -114,24 +118,87 @@ myApp.controller('resultsController', ['$scope', '$rootScope','$firebaseAuth', '
 			$scope.sub3.subassists = 0;	
 			$scope.sub3.subyellow = 0;
 			$scope.sub3.subred = 0;		
-		}					
+		}	
+		if($scope.sub1 == undefined){
+			$scope.sub1 = {
+				firstname: "",
+				secondname: "",
+				id: ""
+			};	
+		}	
+		if($scope.sub2 == undefined){
+			$scope.sub2 = {
+				firstname: "",
+				secondname: "",
+				id: ""
+			};		
+		}	
+		if($scope.sub3 == undefined){
+			$scope.sub3 = {
+				firstname: "",
+				secondname: "",
+				id: ""
+			};		
+		}	
+
+		console.log($scope.sub1, $scope.subon1)	
+						
 	});												
 
+	
+	$scope.autopick = function(){
+		$scope.pos1selected = $scope.players[0];
+		$scope.pos2selected = $scope.players[1];
+		$scope.pos3selected = $scope.players[2];
+		$scope.pos4selected = $scope.players[3];
+		$scope.pos5selected = $scope.players[4];
+		$scope.pos6selected = $scope.players[5];
+		$scope.pos7selected = $scope.players[6];
+		$scope.pos8selected = $scope.players[7];
+		$scope.pos9selected = $scope.players[8];
+		$scope.pos10selected = $scope.players[9];	
+		$scope.pos11selected = $scope.players[10];																						
+	}
+	
 
 
 	auth.$onAuth(function(authUser){
 		var resultsRef = new Firebase(FIREBASE_URL + '/results');
 		var resultsInfo = $firebaseArray(resultsRef);	
 
+		$scope.addResult = function(){		
 
-		$scope.addResult = function(){			
-
-			angular.forEach($scope.starting11, function(starting11){
-				if($scope.sub1.playeronfor.id === starting11.id){
-					starting11.gameminutes = $scope.sub1.subminuteon;
-					$scope.sub1.subminuteon = 90 - $scope.sub1.subminuteon;
+			if($scope.sub1.firstname !== ""){
+				if($scope.subon1){
+					angular.forEach($scope.starting11, function(starting11){
+						if($scope.sub1.playeronfor.id === starting11.id){
+							starting11.gameminutes = $scope.sub1.subminuteon;
+							$scope.sub1.subminuteon = 90 - $scope.sub1.subminuteon;
+						}					
+					});
 				}
-			});
+			}
+			if($scope.sub2.firstname !== ""){
+				if($scope.subon2){
+					angular.forEach($scope.starting11, function(starting11){
+						if($scope.sub2.playeronfor.id === starting11.id){
+							starting11.gameminutes = $scope.sub2.subminuteon;
+							$scope.sub2.subminuteon = 90 - $scope.sub2.subminuteon;
+						}									
+					});
+				}	
+			}	
+
+			if($scope.sub3.firstname !== ""){
+				if($scope.subon3){
+					angular.forEach($scope.starting11, function(starting11){
+						if($scope.sub3.playeronfor.id === starting11.id){
+							starting11.gameminutes = $scope.sub3.subminuteon;
+							$scope.sub3.subminuteon = 90 - $scope.sub3.subminuteon;
+						}					
+					});
+				}
+			}							
 
 			if($scope.pos1selected.id === resultsRef ){
 				alert("You have selected the same player in two positions please try again");
@@ -264,7 +331,8 @@ myApp.controller('resultsController', ['$scope', '$rootScope','$firebaseAuth', '
 									assists:$scope.sub1.subassists,
 									yellowCards: $scope.sub1.subyellow,
 									redCards: $scope.sub1.subred,
-									minutes: $scope.sub1.subminuteon									 							
+									minutes: $scope.sub1.subminuteon,
+									didplayercomeon: $scope.subon1									 							
 								},
 								sub2: {
 									firstname: $scope.sub2.firstname,
@@ -274,7 +342,8 @@ myApp.controller('resultsController', ['$scope', '$rootScope','$firebaseAuth', '
 									assists:$scope.sub2.subassists,
 									yellowCards: $scope.sub2.subyellow,
 									redCards: $scope.sub2.subred,
-									minutes: $scope.sub2.subminuteon									 							
+									minutes: $scope.sub2.subminuteon,
+									didplayercomeon: $scope.subon2									 							
 								},
 								sub3: {
 									firstname: $scope.sub3.firstname,
@@ -284,7 +353,8 @@ myApp.controller('resultsController', ['$scope', '$rootScope','$firebaseAuth', '
 									assists:$scope.sub3.subassists,
 									yellowCards: $scope.sub3.subyellow,
 									redCards: $scope.sub3.subred,
-									minutes: $scope.sub3.subminuteon									 							
+									minutes: $scope.sub3.subminuteon,
+									didplayercomeon: $scope.subon3									 							
 								}																																																																																																											
 							}
 						})
@@ -549,36 +619,43 @@ myApp.controller('resultsController', ['$scope', '$rootScope','$firebaseAuth', '
 									}	
 								});	
 								sub1Info.$loaded().then(function(){
-									if(playerInfo.id === sub1Info.id) {										
-										playerInfo.apps = playerInfo.apps + 1;
-										playerInfo.goals = playerInfo.goals + sub1Info.goals;
-										playerInfo.assists = playerInfo.assists + sub1Info.assists;
-										playerInfo.yellowCards =  playerInfo.yellowCards + sub1Info.yellowCards
-										playerInfo.redCards =  playerInfo.redCards + sub1Info.redCards;
-										playerInfo.minutes = playerInfo.minutes + sub1Info.minutes;								
-										playersInfo.$save(playerInfo)
-									}	
+									if(playerInfo.id === sub1Info.id) {		
+										console.log(sub1Info.didplayercomeon)								
+										if(sub1Info.didplayercomeon){
+											playerInfo.apps = playerInfo.apps + 1;
+											playerInfo.goals = playerInfo.goals + sub1Info.goals;
+											playerInfo.assists = playerInfo.assists + sub1Info.assists;
+											playerInfo.yellowCards =  playerInfo.yellowCards + sub1Info.yellowCards
+											playerInfo.redCards =  playerInfo.redCards + sub1Info.redCards;
+											playerInfo.minutes = playerInfo.minutes + sub1Info.minutes;								
+											playersInfo.$save(playerInfo);
+										}	
+									}
 								});	
 								sub2Info.$loaded().then(function(){
-									if(playerInfo.id === sub2Info.id) {										
-										playerInfo.apps = playerInfo.apps + 1;
-										playerInfo.goals = playerInfo.goals + sub2Info.goals;
-										playerInfo.assists = playerInfo.assists + sub2Info.assists;
-										playerInfo.yellowCards =  playerInfo.yellowCards + sub2Info.yellowCards
-										playerInfo.redCards =  playerInfo.redCards + sub2Info.redCards;
-										playerInfo.minutes = playerInfo.minutes + sub2Info.minutes;								
-										playersInfo.$save(playerInfo)
+									if(playerInfo.id === sub2Info.id) {	
+										if(sub2Info.didplayercomeon){																		
+											playerInfo.apps = playerInfo.apps + 1;
+											playerInfo.goals = playerInfo.goals + sub2Info.goals;
+											playerInfo.assists = playerInfo.assists + sub2Info.assists;
+											playerInfo.yellowCards =  playerInfo.yellowCards + sub2Info.yellowCards
+											playerInfo.redCards =  playerInfo.redCards + sub2Info.redCards;
+											playerInfo.minutes = playerInfo.minutes + sub2Info.minutes;								
+											playersInfo.$save(playerInfo)
+										}
 									}	
 								});	
 								sub3Info.$loaded().then(function(){
-									if(playerInfo.id === sub3Info.id) {										
-										playerInfo.apps = playerInfo.apps + 1;
-										playerInfo.goals = playerInfo.goals + sub3Info.goals;
-										playerInfo.assists = playerInfo.assists + sub3Info.assists;
-										playerInfo.yellowCards =  playerInfo.yellowCards + sub3Info.yellowCards
-										playerInfo.redCards =  playerInfo.redCards + sub3Info.redCards;
-										playerInfo.minutes = playerInfo.minutes + sub3Info.minutes;								
-										playersInfo.$save(playerInfo)
+									if(playerInfo.id === sub3Info.id) {	
+										if(sub3Info.didplayercomeon){																		
+											playerInfo.apps = playerInfo.apps + 1;
+											playerInfo.goals = playerInfo.goals + sub3Info.goals;
+											playerInfo.assists = playerInfo.assists + sub3Info.assists;
+											playerInfo.yellowCards =  playerInfo.yellowCards + sub3Info.yellowCards
+											playerInfo.redCards =  playerInfo.redCards + sub3Info.redCards;
+											playerInfo.minutes = playerInfo.minutes + sub3Info.minutes;								
+											playersInfo.$save(playerInfo)
+										}
 									}	
 								});																																																																																																					
 							})					
@@ -593,7 +670,7 @@ myApp.controller('resultsController', ['$scope', '$rootScope','$firebaseAuth', '
 							scoreaway: $scope.scoreaway,
 							dateplayed: $scope.dateplayed,
 							dateAdded: Firebase.ServerValue.TIMESTAMP,
-							position: {
+							position: {								
 								position1: {
 									firstname: $scope.pos1selected.firstname,
 									secondname: $scope.pos1selected.secondname,
