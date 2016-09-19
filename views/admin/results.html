@@ -1,9 +1,17 @@
 <form class="form-horizontal" name="myForm" ng-submit="addResult()" novalidate>
 		<div class="input-group">
-		<select ng-model="homeoraway" class="form-control" ng-required="true">
+		<select ng-model="leagueorcup" class="form-control" ng-required="true">
+			<option value="League">League</option>
+			<option value="Cup">Cup</option>
+		</select>			
+		<select ng-model="homeoraway" ng-hide="leagueorcup === 'Cup'" class="form-control" ng-required="true">
 			<option value="Home">Home</option>
 			<option value="Away">Away</option>
 		</select>
+		<select ng-model="extratime" ng-hide="leagueorcup === 'Cup'" class="form-control" ng-required="true">
+			<option value="No">No</option>
+			<option value="Yes">Yes</option>
+		</select>		
 		<select ng-options="team as team.name for team in teams | filter:{ view : true }" ng-model="opponent" ng-required="true" class="form-control">
 			<option value="" ng-if="false"></option>
 		</select>				

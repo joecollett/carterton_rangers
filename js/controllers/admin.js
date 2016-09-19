@@ -49,7 +49,13 @@ myApp.controller('adminController', ['$scope', '$rootScope','$firebaseAuth', '$f
 					goals:0,
 					assists:0,
 					apps:0,
-					minutes:0
+					minutes:0,
+					cupRedCards:0,
+					cupyellowCards:0,
+					cupGoals:0,
+					cupAssists:0,
+					cupApps:0,
+					cupMinutes:0
 				}).then(function(playersRef){
 					var id = playersRef.key();
 
