@@ -220,7 +220,7 @@ myApp.controller('resultsController', ['$scope', '$rootScope','$firebaseAuth', '
 								},
 								position2: {
 									firstname: $scope.pos2selected.firstname,
-									secondname: $scope.pos2selected.secondname,r4c4rcx4c4xrcrxza
+									secondname: $scope.pos2selected.secondname,
 									id: $scope.pos2selected.id,
 									cupGoals:$scope.pos2selected.gamegoals,
 									cupAssists:$scope.pos2selected.gameassists,
@@ -597,8 +597,8 @@ myApp.controller('resultsController', ['$scope', '$rootScope','$firebaseAuth', '
 												playersInfo.$save(playerInfo)
 											}
 										}	
-									});													
-																																																																																																							
+									});																																																																																																										
+								});	
 						});
 					});	
 				} else {

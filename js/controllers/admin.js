@@ -51,7 +51,7 @@ myApp.controller('adminController', ['$scope', '$rootScope','$firebaseAuth', '$f
 					apps:0,
 					minutes:0,
 					cupRedCards:0,
-					cupyellowCards:0,
+					cupYellowCards:0,
 					cupGoals:0,
 					cupAssists:0,
 					cupApps:0,
@@ -62,13 +62,13 @@ myApp.controller('adminController', ['$scope', '$rootScope','$firebaseAuth', '$f
 					var playersIdRef = new Firebase(FIREBASE_URL + '/players/' + id);
 					    playersIdRef.update({ 'id': id});					
 
-					$scope.playerfirstname = "";
-					$scope.playersecondname = "";
-					$scope.playerno = "";
-					$scope.position = "";
-					$scope.playerdob = "";
-					$scope.playerbio = "";
-					$scope.playerimage = "";
+					// $scope.playerfirstname = "";
+					// $scope.playersecondname = "";
+					// $scope.playerno = "";
+					// $scope.position = "";
+					// $scope.playerdob = "";
+					// $scope.playerbio = "";
+					// $scope.playerimage = "";
 				});
 			}
 

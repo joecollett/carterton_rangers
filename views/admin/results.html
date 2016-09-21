@@ -4,11 +4,11 @@
 			<option value="League">League</option>
 			<option value="Cup">Cup</option>
 		</select>			
-		<select ng-model="homeoraway" ng-hide="leagueorcup === 'Cup'" class="form-control" ng-required="true">
+		<select ng-model="homeoraway" ng-hide="leagueorcup === 'Cup'" class="form-control" ng-required="leagueorcup === 'League'">
 			<option value="Home">Home</option>
 			<option value="Away">Away</option>
 		</select>
-		<select ng-model="extratime" ng-hide="leagueorcup === 'Cup'" class="form-control" ng-required="true">
+		<select ng-model="extratime" ng-hide="leagueorcup === 'League'" class="form-control" ng-required="leagueorcup === 'Cup'">
 			<option value="No">No</option>
 			<option value="Yes">Yes</option>
 		</select>		
