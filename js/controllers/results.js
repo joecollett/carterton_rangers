@@ -424,6 +424,18 @@ myApp.controller('resultsController', ['$scope', '$rootScope','$firebaseAuth', '
 
 							var resultScore = new Firebase(FIREBASE_URL + '/results/' + sid);
 							var resultScoreInfo = $firebaseObject(resultScore);		
+
+							resultScoreInfo.$loaded(function(){
+								angular.forEach(teamsInfo, function(teamInfo){		
+									console.log(crInfo);
+									if(teamInfo.id === crInfo.id){
+										teamInfo.cupApps = teamInfo.cupApps + 1;
+										teamInfo.goalsforCup = teamInfo.goalsforCup + resultScoreInfo.scorehome;
+										teamInfo.goalsagainstCup = teamInfo.goalsagainstCup + resultScoreInfo.scoreaway;																			
+										teamsInfo.$save(teamInfo)	
+									}					
+								});
+							});																
 							
 						        angular.forEach(playersInfo, function(playerInfo) {
 									position1Info.$loaded().then(function(){
@@ -436,7 +448,7 @@ myApp.controller('resultsController', ['$scope', '$rootScope','$firebaseAuth', '
 											playerInfo.cupMinutes = playerInfo.cupMinutes + position1Info.cupMinutes;
 											playersInfo.$save(playerInfo)
 										}
-									});							
+									});													
 
 									position2Info.$loaded().then(function(){
 										if(playerInfo.id === position2Info.id) {
@@ -611,6 +623,7 @@ myApp.controller('resultsController', ['$scope', '$rootScope','$firebaseAuth', '
 								scoreaway: $scope.scoreaway,
 								dateplayed: $scope.dateplayed,
 								dateAdded: Firebase.ServerValue.TIMESTAMP,
+								competition: $scope.leagueorcup,
 								position: {
 									position1: {
 										firstname: $scope.pos1selected.firstname,
@@ -1069,6 +1082,7 @@ myApp.controller('resultsController', ['$scope', '$rootScope','$firebaseAuth', '
 								scoreaway: $scope.scoreaway,
 								dateplayed: $scope.dateplayed,
 								dateAdded: Firebase.ServerValue.TIMESTAMP,
+								competition: $scope.leagueorcup,
 								position: {								
 									position1: {
 										firstname: $scope.pos1selected.firstname,
