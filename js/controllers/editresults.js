@@ -271,7 +271,20 @@ myApp.controller('editResultsController', ['$scope', '$rootScope','$firebaseAuth
 				})				
 				resultsInfo.$remove(result)
 			} else {
-				alert("hello");
+				angular.forEach(teamsInfo, function(teamInfo){
+					if(teamInfo.id === RANGERS_ID){
+						teamInfo.cupApps = teamInfo.cupApps - 1;
+						teamInfo.goalsforCup = teamInfo.goalsforCup - result.scorehome;	
+						teamInfo.goalsagainstCup = teamInfo.goalsagainstCup - result.scoreaway;
+						if(result.scorehome > result.scoreaway){
+							teamInfo.cupWin = teamInfo.cupWin - 1;
+						} else {
+							teamInfo.cupLoss = teamInfo.cupLoss - 1;
+						}															
+						teamsInfo.$save(teamInfo)
+					}
+				});		
+				resultsInfo.$remove(result)	
 			}
 		}
 }]);

@@ -35,6 +35,8 @@ myApp.controller('teamsController', ['$scope', '$rootScope', '$route','$firebase
 			cupApps:0,
 			goalsforCup:0,
 			goalsagainstCup:0,
+			cupLoss:0,
+			cupWin:0
 		}).then(function(teamsRef){
 			var id = teamsRef.key();
 			var teamsIdRef = new Firebase(FIREBASE_URL + '/teams/' + id);

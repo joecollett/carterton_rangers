@@ -427,13 +427,19 @@ myApp.controller('resultsController', ['$scope', '$rootScope','$firebaseAuth', '
 
 							resultScoreInfo.$loaded(function(){
 								angular.forEach(teamsInfo, function(teamInfo){		
-									console.log(crInfo);
 									if(teamInfo.id === crInfo.id){
 										teamInfo.cupApps = teamInfo.cupApps + 1;
 										teamInfo.goalsforCup = teamInfo.goalsforCup + resultScoreInfo.scorehome;
-										teamInfo.goalsagainstCup = teamInfo.goalsagainstCup + resultScoreInfo.scoreaway;																			
-										teamsInfo.$save(teamInfo)	
-									}					
+										teamInfo.goalsagainstCup = teamInfo.goalsagainstCup + resultScoreInfo.scoreaway;		
+
+										if(resultScoreInfo.scorehome > resultScoreInfo.scoreaway){
+											teamInfo.cupWin = teamInfo.cupWin + 1;
+										}	
+										if(resultScoreInfo.scoreaway > resultScoreInfo.scorehome){	
+											teamInfo.cupLoss = teamInfo.cupLoss + 1;																		
+										}											
+									}
+									teamsInfo.$save(teamInfo)					
 								});
 							});																
 							
@@ -452,7 +458,6 @@ myApp.controller('resultsController', ['$scope', '$rootScope','$firebaseAuth', '
 
 									position2Info.$loaded().then(function(){
 										if(playerInfo.id === position2Info.id) {
-											console.log(playerInfo)	
 											playerInfo.cupApps = playerInfo.cupApps + 1;
 											playerInfo.cupGoals = playerInfo.cupGoals + position2Info.cupGoals;
 											playerInfo.cupAssists = playerInfo.cupAssists + position2Info.cupAssists;
@@ -460,7 +465,6 @@ myApp.controller('resultsController', ['$scope', '$rootScope','$firebaseAuth', '
 											playerInfo.cupRedCards =  playerInfo.cupRedCards + position2Info.cupRedCards;
 											playerInfo.cupMinutes = playerInfo.cupMinutes + position2Info.cupMinutes;							
 											playersInfo.$save(playerInfo)
-											console.log(playerInfo)	
 										}	
 									});	
 
