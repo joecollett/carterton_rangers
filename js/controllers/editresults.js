@@ -15,7 +15,7 @@ myApp.controller('editResultsController', ['$scope', '$rootScope','$firebaseAuth
 		$scope.deleteResult = function(result){
 
 
-			if(result.compeition === "League"){
+			if(result.competition === "League"){
 				if(result.home.id === RANGERS_ID){
 					angular.forEach(teamsInfo, function(teamInfo){
 						if(result.scorehome > result.scoreaway){
@@ -267,7 +267,40 @@ myApp.controller('editResultsController', ['$scope', '$rootScope','$firebaseAuth
 						playerInfo.redCards = playerInfo.redCards - result.position.position11.redCards;
 						playerInfo.minutes = playerInfo.minutes - result.position.position11.minutes;					
 						playersInfo.$save(playerInfo);			        		
-		        	}		        		        			        		        			        		        		        	        		        	        	
+		        	}	
+		        	if(result.position.sub1.id === playerInfo.id) {
+		        		if(result.position.sub1.didplayercomeon){
+							playerInfo.apps = playerInfo.apps - 1;
+							playerInfo.goals = playerInfo.goals - result.position.sub1.goals;
+							playerInfo.assists = playerInfo.assists - result.position.sub1.assists;
+							playerInfo.yellowCards = playerInfo.yellowCards - result.position.sub1.yellowCards;
+							playerInfo.redCards = playerInfo.redCards - result.position.sub1.redCards;
+							playerInfo.minutes = playerInfo.minutes - result.position.sub1.minutes;	
+							playersInfo.$save(playerInfo);		        			
+		        		}
+		        	}
+		        	if(result.position.sub2.id === playerInfo.id) {
+		        		if(result.position.sub2.didplayercomeon){
+							playerInfo.apps = playerInfo.apps - 1;
+							playerInfo.goals = playerInfo.goals - result.position.sub2.goals;
+							playerInfo.assists = playerInfo.assists - result.position.sub2.assists;
+							playerInfo.yellowCards = playerInfo.yellowCards - result.position.sub2.yellowCards;
+							playerInfo.redCards = playerInfo.redCards - result.position.sub2.redCards;
+							playerInfo.minutes = playerInfo.minutes - result.position.sub2.minutes;	
+							playersInfo.$save(playerInfo);		        			
+		        		}
+		        	}	
+		        	if(result.position.sub3.id === playerInfo.id) {
+		        		if(result.position.sub3.didplayercomeon){
+							playerInfo.apps = playerInfo.apps - 1;
+							playerInfo.goals = playerInfo.goals - result.position.sub3.goals;
+							playerInfo.assists = playerInfo.assists - result.position.sub3.assists;
+							playerInfo.yellowCards = playerInfo.yellowCards - result.position.sub3.yellowCards;
+							playerInfo.redCards = playerInfo.redCards - result.position.sub3.redCards;
+							playerInfo.minutes = playerInfo.minutes - result.position.sub3.minutes;	
+							playersInfo.$save(playerInfo);		        			
+		        		}
+		        	}			        		        		        			        		        			        		        		        	        		        	        	
 				})				
 				resultsInfo.$remove(result)
 			} else {
@@ -284,6 +317,140 @@ myApp.controller('editResultsController', ['$scope', '$rootScope','$firebaseAuth
 						teamsInfo.$save(teamInfo)
 					}
 				});		
+		        angular.forEach(playersInfo, function(playerInfo) {
+		        	if(result.position.position1.id === playerInfo.id){
+						playerInfo.cupApps = playerInfo.cupApps - 1;
+						playerInfo.cupGoals = playerInfo.cupGoals - result.position.position1.cupGoals;
+						playerInfo.cupAssists = playerInfo.cupAssists - result.position.position1.cupAssists;
+						playerInfo.cupYellowCards = playerInfo.cupYellowCards - result.position.position1.cupYellowCards;
+						playerInfo.cupRedCards = playerInfo.cupRedCards - result.position.position1.cupRedCards;
+						playerInfo.cupMinutes = playerInfo.cupMinutes - result.position.position1.cupMinutes;
+						playersInfo.$save(playerInfo)			        		
+		        	}
+		        	if(result.position.position2.id === playerInfo.id){
+						playerInfo.cupApps = playerInfo.cupApps - 1;
+						playerInfo.cupGoals = playerInfo.cupGoals - result.position.position2.cupGoals;
+						playerInfo.cupAssists = playerInfo.cupAssists - result.position.position2.cupAssists;
+						playerInfo.cupYellowCards = playerInfo.cupYellowCards - result.position.position2.cupYellowCards;
+						playerInfo.cupRedCards = playerInfo.cupRedCards - result.position.position2.cupRedCards;
+						playerInfo.cupMinutes = playerInfo.cupMinutes - result.position.position2.cupMinutes;					
+						playersInfo.$save(playerInfo)			        		
+		        	}	
+		        	if(result.position.position3.id === playerInfo.id){
+						playerInfo.cupApps = playerInfo.cupApps - 1;
+						playerInfo.cupGoals = playerInfo.cupGoals - result.position.position3.cupGoals;
+						playerInfo.cupAssists = playerInfo.cupAssists - result.position.position3.cupAssists;
+						playerInfo.cupYellowCards = playerInfo.cupYellowCards - result.position.position3.cupYellowCards;
+						playerInfo.cupRedCards = playerInfo.cupRedCards - result.position.position3.cupRedCards;
+						playerInfo.cupMinutes = playerInfo.cupMinutes - result.position.position3.cupMinutes;						
+						playersInfo.$save(playerInfo)			        		
+		        	}	 
+		        	if(result.position.position4.id === playerInfo.id){
+						playerInfo.cupApps = playerInfo.cupApps - 1;
+						playerInfo.cupGoals = playerInfo.cupGoals - result.position.position4.cupGoals;
+						playerInfo.cupAssists = playerInfo.cupAssists - result.position.position4.cupAssists;
+						playerInfo.cupYellowCards = playerInfo.cupYellowCards - result.position.position4.cupYellowCards;
+						playerInfo.cupRedCards = playerInfo.cupRedCards - result.position.position4.cupRedCards;
+						playerInfo.cupMinutes = playerInfo.cupMinutes - result.position.position4.cupMinutes;							
+						playersInfo.$save(playerInfo);			        		
+		        	}	
+		        	if(result.position.position5.id === playerInfo.id){
+						playerInfo.cupApps = playerInfo.cupApps - 1;
+						playerInfo.cupGoals = playerInfo.cupGoals - result.position.position5.cupGoals;
+						playerInfo.cupAssists = playerInfo.cupAssists - result.position.position5.cupAssists;
+						playerInfo.cupYellowCards = playerInfo.cupYellowCards - result.position.position5.cupYellowCards;
+						playerInfo.cupRedCards = playerInfo.cupRedCards - result.position.position5.cupRedCards;
+						playerInfo.cupMinutes = playerInfo.cupMinutes - result.position.position5.cupMinutes;						
+						playersInfo.$save(playerInfo);			        		
+		        	}	
+		        	if(result.position.position6.id === playerInfo.id){
+						playerInfo.cupApps = playerInfo.cupApps - 1;
+						playerInfo.cupGoals = playerInfo.cupGoals - result.position.position6.cupGoals;
+						playerInfo.cupAssists = playerInfo.cupAssists - result.position.position6.cupAssists;
+						playerInfo.cupYellowCards = playerInfo.cupYellowCards - result.position.position6.cupYellowCards;
+						playerInfo.cupRedCards = playerInfo.cupRedCards - result.position.position6.cupRedCards;
+						playerInfo.cupMinutes = playerInfo.cupMinutes - result.position.position6.cupMinutes;						
+						playersInfo.$save(playerInfo);			        		
+		        	}	
+		        	if(result.position.position7.id === playerInfo.id){
+						playerInfo.cupApps = playerInfo.cupApps - 1;
+						playerInfo.cupGoals = playerInfo.cupGoals - result.position.position7.cupGoals;
+						playerInfo.cupAssists = playerInfo.cupAssists - result.position.position7.cupAssists;
+						playerInfo.cupYellowCards = playerInfo.cupYellowCards - result.position.position7.cupYellowCards;
+						playerInfo.cupRedCards = playerInfo.cupRedCards - result.position.position7.cupRedCards;
+						playerInfo.cupMinutes = playerInfo.cupMinutes - result.position.position7.cupMinutes;						
+						playersInfo.$save(playerInfo);			        		
+		        	}
+		        	if(result.position.position8.id === playerInfo.id){
+						playerInfo.cupApps = playerInfo.cupApps - 1;
+						playerInfo.cupGoals = playerInfo.cupGoals - result.position.position8.cupGoals;
+						playerInfo.cupAssists = playerInfo.cupAssists - result.position.position8.cupAssists;
+						playerInfo.cupYellowCards = playerInfo.cupYellowCards - result.position.position8.cupYellowCards;
+						playerInfo.cupRedCards = playerInfo.cupRedCards - result.position.position8.cupRedCards;
+						playerInfo.cupMinutes = playerInfo.cupMinutes - result.position.position8.cupMinutes;							
+						playersInfo.$save(playerInfo);			        		
+		        	}	
+		        	if(result.position.position9.id === playerInfo.id){
+						playerInfo.cupApps = playerInfo.cupApps - 1;
+						playerInfo.cupGoals = playerInfo.cupGoals - result.position.position9.cupGoals;
+						playerInfo.cupAssists = playerInfo.cupAssists - result.position.position9.cupAssists;
+						playerInfo.cupYellowCards = playerInfo.cupYellowCards - result.position.position9.cupYellowCards;
+						playerInfo.cupRedCards = playerInfo.cupRedCards - result.position.position9.cupRedCards;
+						playerInfo.cupMinutes = playerInfo.cupMinutes - result.position.position9.cupMinutes;							
+						playersInfo.$save(playerInfo);			        		
+		        	}
+		        	if(result.position.position10.id === playerInfo.id){
+						playerInfo.cupApps = playerInfo.cupApps - 1;
+						playerInfo.cupGoals = playerInfo.cupGoals - result.position.position10.cupGoals;
+						playerInfo.cupAssists = playerInfo.cupAssists - result.position.position10.cupAssists;
+						playerInfo.cupYellowCards = playerInfo.cupYellowCards - result.position.position10.cupYellowCards;
+						playerInfo.cupRedCards = playerInfo.cupRedCards - result.position.position10.cupRedCards;
+						playerInfo.cupMinutes = playerInfo.cupMinutes - result.position.position10.cupMinutes;					
+						playersInfo.$save(playerInfo);			        		
+		        	}	
+		        	if(result.position.position11.id === playerInfo.id){
+						playerInfo.cupApps = playerInfo.cupApps - 1;
+						playerInfo.cupGoals = playerInfo.cupGoals - result.position.position11.cupGoals;
+						playerInfo.cupAssists = playerInfo.cupAssists - result.position.position11.cupAssists;
+						playerInfo.cupYellowCards = playerInfo.cupYellowCards - result.position.position11.cupYellowCards;
+						playerInfo.cupRedCards = playerInfo.cupRedCards - result.position.position11.cupRedCards;
+						playerInfo.cupMinutes = playerInfo.cupMinutes - result.position.position11.cupMinutes;						
+						playersInfo.$save(playerInfo);			        		
+		        	}	
+		        	if(result.position.sub1.id === playerInfo.id) {
+		        		if(result.position.sub1.didplayercomeon){
+							playerInfo.cupApps = playerInfo.cupApps - 1;
+							playerInfo.cupGoals = playerInfo.cupGoals - result.position.sub1.cupGoals;
+							playerInfo.cupAssists = playerInfo.cupAssists - result.position.sub1.cupAssists;
+							playerInfo.cupYellowCards = playerInfo.cupYellowCards - result.position.sub1.cupYellowCards;
+							playerInfo.cupRedCards = playerInfo.cupRedCards - result.position.sub1.cupRedCards;
+							playerInfo.cupMinutes = playerInfo.cupMinutes - result.position.sub1.cupMinutes;	
+							playersInfo.$save(playerInfo);		        			
+		        		}
+		        	}
+		        	if(result.position.sub2.id === playerInfo.id) {
+		        		if(result.position.sub2.didplayercomeon){
+							playerInfo.cupApps = playerInfo.cupApps - 1;
+							playerInfo.cupGoals = playerInfo.cupGoals - result.position.sub2.cupGoals;
+							playerInfo.cupAssists = playerInfo.cupAssists - result.position.sub2.cupAssists;
+							playerInfo.cupYellowCards = playerInfo.cupYellowCards - result.position.sub2.cupYellowCards;
+							playerInfo.cupRedCards = playerInfo.cupRedCards - result.position.sub2.cupRedCards;
+							playerInfo.cupMinutes = playerInfo.cupMinutes - result.position.sub2.cupMinutes;	
+							playersInfo.$save(playerInfo);		        			
+		        		}
+		        	}	
+		        	if(result.position.sub3.id === playerInfo.id) {
+		        		if(result.position.sub3.didplayercomeon){
+							playerInfo.cupApps = playerInfo.cupApps - 1;
+							playerInfo.cupGoals = playerInfo.cupGoals - result.position.sub3.cupGoals;
+							playerInfo.cupAssists = playerInfo.cupAssists - result.position.sub3.cupAssists;
+							playerInfo.cupYellowCards = playerInfo.cupYellowCards - result.position.sub3.cupYellowCards;
+							playerInfo.cupRedCards = playerInfo.cupRedCards - result.position.sub3.cupRedCards;
+							playerInfo.cupMinutes = playerInfo.cupMinutes - result.position.sub3.cupMinutes;	
+							playersInfo.$save(playerInfo);		        			
+		        		}
+		        	}			        		        	
+				})						
 				resultsInfo.$remove(result)	
 			}
 		}
