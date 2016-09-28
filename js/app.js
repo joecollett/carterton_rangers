@@ -69,7 +69,16 @@ myApp.config(['$routeProvider', function($routeProvider){
 					return Authentication.requireAuth()
 				}
 			}
-		}).			
+		}).		
+		when('/otherResults', {
+			templateUrl: 'views/admin/otherResults.html',
+			controller: 'resultsOtherController',
+			resolve: {
+				currentAuth: function(Authentication){
+					return Authentication.requireAuth()
+				}
+			}
+		}).					
 		when('/editResults', {
 			templateUrl: 'views/admin/editResults.html',
 			controller: 'editResultsController',

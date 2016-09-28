@@ -1206,7 +1206,8 @@ myApp.controller('resultsController', ['$scope', '$rootScope','$firebaseAuth', '
 										assists:$scope.sub1.subassists,
 										yellowCards: $scope.sub1.subyellow,
 										redCards: $scope.sub1.subred,
-										minutes: $scope.sub1.subminuteon									 							
+										minutes: $scope.sub1.subminuteon,
+										didplayercomeon: $scope.subon1										 							
 									},
 									sub2: {
 										firstname: $scope.sub2.firstname,
@@ -1216,7 +1217,8 @@ myApp.controller('resultsController', ['$scope', '$rootScope','$firebaseAuth', '
 										assists:$scope.sub2.subassists,
 										yellowCards: $scope.sub2.subyellow,
 										redCards: $scope.sub2.subred,
-										minutes: $scope.sub2.subminuteon									 							
+										minutes: $scope.sub2.subminuteon,
+										didplayercomeon: $scope.subon2									 							
 									},
 									sub3: {
 										firstname: $scope.sub3.firstname,
@@ -1226,7 +1228,8 @@ myApp.controller('resultsController', ['$scope', '$rootScope','$firebaseAuth', '
 										assists:$scope.sub3.subassists,
 										yellowCards: $scope.sub3.subyellow,
 										redCards: $scope.sub3.subred,
-										minutes: $scope.sub3.subminuteon									 							
+										minutes: $scope.sub3.subminuteon,	
+										didplayercomeon: $scope.subon3									 							
 									},																																																																																																											
 								}
 							}).then(function(ref){
