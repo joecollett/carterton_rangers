@@ -1,14 +1,42 @@
+@import 'https://fonts.googleapis.com/css?family=Fira+Sans';
+
+/** General **/
 body {
-    background:#cccccc;
+    background:#ffffff;
+    font-family: 'Fira Sans', sans-serif;
 }
-.navbar {
-    position: relative;
-    min-height: 75px;
+
+/** Top Header **/
+
+.top-header {
+  height: 110px;
+  background: #000000;
+  color: #fff;
+}
+.top-header-text {
+  padding-left: 145px;
+  margin-top: 40px;
+  display: inline-block;
+  font-size: 41px;
+  font-weight: 700;  
 }
 .navbar-brand > img {
-	float: left;
-	display: inline-block;
-	height: 54px;
+  float: left;
+  display: inline-block;
+  height: 140px;
+  position: absolute;
+  z-index: 9999;
+  top: 10px;
+}
+
+/** Navigation **/
+.navbar {
+  position: relative;
+  min-height: 45px;
+  background: #333;
+  color: #fff;
+  border: none;
+  border-radius: 0px;
 }
 .navbar-brand {
     float: left;
@@ -18,9 +46,14 @@ body {
     line-height: 20px;
 }
 .navbar-nav {
-    float: left;
-    margin: 12px 0 0 0;
+  float: left;
+  margin-left: 133px;
 }
+.navbar-default .navbar-nav > li > a {
+  color:#fff;
+}
+
+/** Loading Spinner **/
 .loader,
 .loader:before,
 .loader:after {
