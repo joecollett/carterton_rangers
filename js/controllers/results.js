@@ -375,7 +375,7 @@ myApp.controller('resultsController', ['$scope', '$rootScope','$firebaseAuth', '
 							$scope.dateplayed = null;
 							$scope.scoreaway = null;
 
-							var sid = ref.path.o[1];
+							var sid = ref.path.o[2];
 
 							var position1 = new Firebase(FIREBASE_URL + '/results/' + sid + '/position/position1');
 							var position1Info = $firebaseObject(position1);
@@ -776,6 +776,8 @@ myApp.controller('resultsController', ['$scope', '$rootScope','$firebaseAuth', '
 							})
 							.then(function(ref){
 
+								console.log(ref)
+
 								$scope.pos1selected = null;
 								$scope.pos2selected = null;
 								$scope.pos3selected = null;
@@ -796,7 +798,7 @@ myApp.controller('resultsController', ['$scope', '$rootScope','$firebaseAuth', '
 								$scope.dateplayed = null;
 								$scope.scoreaway = null;
 
-								var sid = ref.path.o[1];
+								var sid = ref.path.o[2];
 
 								var position1 = new Firebase(FIREBASE_URL + '/results/' + sid + '/position/position1');
 								var position1Info = $firebaseObject(position1);
@@ -1253,7 +1255,7 @@ myApp.controller('resultsController', ['$scope', '$rootScope','$firebaseAuth', '
 								$scope.dateplayed = null;
 								$scope.scoreaway = null;
 
-								var sid = ref.path.o[1];
+								var sid = ref.path.o[2];
 
 								var position1 = new Firebase(FIREBASE_URL + '/results/' + sid + '/position/position1');
 								var position1Info = $firebaseObject(position1);

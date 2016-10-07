@@ -1,0 +1,26 @@
+<h2>Add a News Item</h2>
+<p>Type a meeting name and hit + </p>
+<form class="form-horizontal" name="myForm" ng-submit="addNews()" novalidate>
+	 <div class="input-group">
+		<select ng-model="newsType" class="form-control">
+			<option value=""></option>
+			<option value="Player News">Player News</option>
+			<option value="Team News">Team News</option>
+			<option value="Match Report">Match Report</option>
+			<option value="">Other</option>
+		</select>			 	
+		<select ng-show="newsType === 'Match Report'" ng-options='result as (result.home.name + " V " + result.away.name + " - " + result.dateplayed) for result in results' ng-model="result" class="form-control" ng-required="newsType === 'Match Report'">
+			<option value=""></option>
+		</select>		
+		
+		<input type="text" ng-model="newsCaption" name="newsCaption" ng-required="true" class="form-control">
+		<input type="filepicker"  ng-click="pickFile()">
+		<input type="text" ng-model="newsImage" name="newsImage" ng-required="true" class="form-control" value="{{newsImage}}">
+		
+
+		<div class="input-group-btn">
+	  		<button type="submit" class="btn btn-default" ng-disabled="myForm.$invalid">+</button>
+		</div>
+
+	</div> 
+</form>

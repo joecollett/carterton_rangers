@@ -3,6 +3,10 @@ myApp.controller('homeController', ['$scope', '$rootScope', '$location','$fireba
 	var playersRef = new Firebase(FIREBASE_URL + '/players');
 	var playersInfo = $firebaseArray(playersRef);
 
-	$scope.players = playersInfo;
+	var newsRef = new Firebase(FIREBASE_URL + '/news');
+	var newsInfo = $firebaseArray(newsRef);		
+
+	$scope.news = newsInfo; 
+	$scope.players = playersInfo;	
 
 }]);

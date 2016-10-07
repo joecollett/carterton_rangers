@@ -1,8 +1,8 @@
-var myApp = angular.module("myApp", ['ngRoute', 'firebase', 'angular-filepicker'])
+var myApp = angular.module("myApp", ['ngRoute', 'firebase', 'angular-filepicker', 'ngAnimate'])
 
 
-myApp.constant('FIREBASE_URL', 'https://cartertonrangers.firebaseio.com'); 
-myApp.constant('RANGERS_ID', '-KF-Py2HA1gkBFH1q9NV'); 
+myApp.constant('FIREBASE_URL', 'https://cartertonrangers.firebaseio.com/season1'); 
+myApp.constant('RANGERS_ID', '-KTTJOLPBuGtWhsQsd12'); 
 
 myApp.config(function (filepickerProvider) {
     filepickerProvider.setKey('Ajsh3Aa7YTcuEjkAajJpiz');
@@ -43,7 +43,11 @@ myApp.config(['$routeProvider', function($routeProvider){
 		when('/player/:uId', {
 			templateUrl: 'views/player.html',
 			controller: 'playerController'
-		}).		
+		}).	
+		when('/news/:uId', {
+			templateUrl: 'views/newsItem.html',
+			controller: 'newsItemController'
+		}).					
 		when('/login', {
 			templateUrl: 'views/login.html',
 			controller: 'registrationController'
@@ -97,6 +101,15 @@ myApp.config(['$routeProvider', function($routeProvider){
 				}
 			}
 		}).
+		when('/news', {
+			templateUrl: 'views/admin/news.html',
+			controller: 'newsController',
+			resolve: {
+				currentAuth: function(Authentication){
+					return Authentication.requireAuth()
+				}
+			}
+		}).		
 		otherwise({
 			redirectTo: '/home'
 		})		

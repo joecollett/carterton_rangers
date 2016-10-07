@@ -17,8 +17,9 @@ body {
   padding-left: 145px;
   margin-top: 40px;
   display: inline-block;
-  font-size: 41px;
-  font-weight: 700;  
+  font-size: 33px;
+  font-weight: 700;
+  text-transform: uppercase;
 }
 .navbar-brand > img {
   float: left;
