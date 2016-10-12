@@ -4,7 +4,9 @@
 			<div class="col-xs-12">
 				<div class="news-main">
 					<a href="#/news/{{item.$id}}">
-						<img ng-src="{{item.mainImage}}"/>
+						<div class="main-news-image">
+							<img ng-src="{{item.mainImage}}"/>
+						</div>
 						<div class="news-main-titlearea">
 							<div class="news-main-title">{{item.newsTitle}}</div>
 							<div class="news-main-caption">{{item.caption}}</div>
@@ -17,9 +19,11 @@
 	<div class="row">
 		<div class="secondary-news" ng-repeat="item in news | orderBy: '-dateAdded' | limitTo:4 " ng-show="!$first">
 			<div class="col-xs-4">
-				<div class="secondary-secondary">
+				<div class="news-secondary">
 					<a href="#/news/{{item.$id}}">
-						<img class="img-responsive" ng-src="{{item.mainImage}}"/>
+						<div class="news-secondary-image">
+							<img class="img-responsive" ng-src="{{item.mainImage}}"/>
+						</div>
 						<div class="news-secondary-titlearea">
 							<div class="news-secondary-title">{{item.newsTitle}}</div>
 							<div class="news-secondary-caption">{{item.caption}}</div>
@@ -29,7 +33,7 @@
 			</div>	
 		</div>				
 	</div>
-
+	<h2>Players</h2>
 	<div class="meeting" ng-repeat="player in players">
 		<div class="row">
 			<div class="col-xs-12">
