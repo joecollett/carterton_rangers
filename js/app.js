@@ -1,4 +1,4 @@
-var myApp = angular.module("myApp", ['ngRoute', 'firebase', 'angular-filepicker', 'ngAnimate'])
+var myApp = angular.module("myApp", ['ngRoute', 'firebase', 'angular-filepicker'])
 
 
 myApp.constant('FIREBASE_URL', 'https://cartertonrangers.firebaseio.com/season1'); 

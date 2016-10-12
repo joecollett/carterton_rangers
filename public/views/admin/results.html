@@ -1,0 +1,485 @@
+<form class="form-horizontal" name="myForm" ng-submit="addResult()" novalidate>
+		<div class="input-group">
+		<select ng-model="leagueorcup" class="form-control" ng-required="true">
+			<option value="League">League</option>
+			<option value="Cup">Cup</option>
+		</select>			
+		<select ng-model="homeoraway" ng-hide="leagueorcup === 'Cup'" class="form-control" ng-required="leagueorcup === 'League'">
+			<option value="Home">Home</option>
+			<option value="Away">Away</option>
+		</select>
+		<select ng-model="extratime" ng-hide="leagueorcup === 'League'" class="form-control" ng-required="leagueorcup === 'Cup'">
+			<option value="No">No</option>
+			<option value="Yes">Yes</option>
+		</select>		
+		<select ng-options="team as team.name for team in teams | filter:{ view : true }" ng-model="opponent" ng-required="true" class="form-control">
+			<option value="" ng-if="false"></option>
+		</select>				
+		<input id="scorehome" placeholder="Home Score" type="number" ng-model="scorehome" class="form-control" ng-required="true">
+		<input id="scoreaway" placeholder="Away Score" type="number" ng-model="scoreaway" class="form-control" ng-required="true">
+		<input id="dateplayed" placeholder="Date Played" type="text" ng-model="dateplayed" class="form-control" ng-required="true">
+		<h2>Squad</h2>	
+		<h3>First 11</h3>
+		<div class="row">
+			<div class="col-xs-12">
+				<select ng-options="player as player.fullname for player in players" ng-model="pos1selected" ng-required="true" class="form-control">
+				</select>
+				<button type="button" class="btn btn-default" ng-click="showStats1 = !showStats1">Stats</button>
+				<div class="row" ng-show="showStats1">
+					<div class="col-xs-12">
+						<div class="well clearfix">
+							<label class="col-sm-2" for="goals1">Goals</label>
+							<div class="col-sm-10">
+								<input type="number" value="10" ng-model="pos1selected.gamegoals" ng-required="true" class="form-control">
+							</div>
+							<label class="col-sm-2" for="asists1">Assists</label>
+							<div class="col-sm-10">
+								<input type="number" value="0" ng-model="pos1selected.gameassists" ng-required="true" class="form-control">	
+							</div>
+							<label class="col-sm-2" for="yellow1">Yellow Cards</label>
+							<div class="col-sm-10">
+								<input type="number" value="0" ng-model="pos1selected.gameyellow" ng-required="true" class="form-control">	
+							</div>
+							<label class="col-sm-2" for="red1">Red Cards</label>
+							<div class="col-sm-10">
+								<input type="number" value="0" ng-model="pos1selected.gamered" ng-required="true" class="form-control">	
+							</div>							
+						</div>							
+					</div>							
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+				<select ng-options="player as player.fullname for player in players" ng-model="pos2selected" ng-required="true" class="form-control">
+				</select>	
+				<button type="button" ng-click="showStats2 = !showStats2" class="btn btn-default">Stats 2</button>
+				<div class="row" ng-show="showStats2">
+					<div class="col-xs-12">
+						<div class="well clearfix">
+							<label class="col-sm-2" for="goals2">Goals</label>
+							<div class="col-sm-10">
+								<input type="number" value="10" ng-model="pos2selected.gamegoals" ng-required="true" class="form-control">
+							</div>
+							<label class="col-sm-2" for="asists2">Assists</label>
+							<div class="col-sm-10">
+								<input type="number" value="0" ng-model="pos2selected.gameassists" ng-required="true" class="form-control">	
+							</div>
+							<label class="col-sm-2" for="yellow2">Yellow Cards</label>
+							<div class="col-sm-10">
+								<input type="number" value="0" ng-model="pos2selected.gameyellow" ng-required="true" class="form-control">	
+							</div>
+							<label class="col-sm-2" for="red2">Red Cards</label>
+							<div class="col-sm-10">
+								<input type="number" value="0" ng-model="pos2selected.gamered" ng-required="true" class="form-control">	
+							</div>							
+						</div>							
+					</div>							
+				</div>				
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col-xs-12">
+				<select ng-options="player as player.fullname for player in players" ng-model="pos3selected" ng-required="true" class="form-control">
+				</select>	
+				<button type="button" ng-click="showStats3 = !showStats3" class="btn btn-default">Stats 3</button>
+				<div class="row" ng-show="showStats3">
+					<div class="col-xs-12">
+						<div class="well clearfix">
+							<label class="col-sm-2" for="goals3">Goals</label>
+							<div class="col-sm-10">
+								<input type="number" value="0" ng-model="pos3selected.gamegoals" ng-required="true" class="form-control">
+							</div>
+							<label class="col-sm-2" for="asists3">Assists</label>
+							<div class="col-sm-10">
+								<input type="number" value="0" ng-model="pos3selected.gameassists" ng-required="true" class="form-control">	
+							</div>
+							<label class="col-sm-2" for="yellow3">Yellow Cards</label>
+							<div class="col-sm-10">
+								<input type="number" value="0" ng-model="pos3selected.gameyellow" ng-required="true" class="form-control">	
+							</div>
+							<label class="col-sm-2" for="red3">Red Cards</label>
+							<div class="col-sm-10">
+								<input type="number" value="0" ng-model="pos3selected.gamered" ng-required="true" class="form-control">	
+							</div>							
+						</div>							
+					</div>							
+				</div>					
+			</div>
+		</div>			
+		<div class="row">
+			<div class="col-xs-12">
+				<select ng-options="player as player.fullname for player in players" ng-model="pos4selected" ng-required="true" class="form-control">
+				</select>
+				<button type="button" ng-click="showStats4 = !showStats4" class="btn btn-default">Stats 4</button>
+				<div class="row" ng-show="showStats4">
+					<div class="col-xs-12">
+						<div class="well clearfix">
+							<label class="col-sm-2" for="goals4">Goals</label>
+							<div class="col-sm-10">
+								<input type="number" value="0" ng-model="pos4selected.gamegoals" ng-required="true" class="form-control">
+							</div>
+							<label class="col-sm-2" for="asists4">Assists</label>
+							<div class="col-sm-10">
+								<input type="number" value="0" ng-model="pos4selected.gameassists" ng-required="true" class="form-control">	
+							</div>
+							<label class="col-sm-2" for="yellow4">Yellow Cards</label>
+							<div class="col-sm-10">
+								<input type="number" value="0" ng-model="pos4selected.gameyellow" ng-required="true" class="form-control">	
+							</div>
+							<label class="col-sm-2" for="red4">Red Cards</label>
+							<div class="col-sm-10">
+								<input type="number" value="0" ng-model="pos4selected.gamered" ng-required="true" class="form-control">	
+							</div>							
+						</div>								
+					</div>							
+				</div>									
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col-xs-12">
+				<select ng-options="player as player.fullname for player in players" ng-model="pos5selected" ng-required="true" class="form-control">
+				</select>				
+				<button type="button" ng-click="showStats5 = !showStats5" class="btn btn-default">Stats 5</button>
+				<div class="row" ng-show="showStats5">
+					<div class="col-xs-12">
+						<div class="well clearfix">
+							<label class="col-sm-2" for="goals5">Goals</label>
+							<div class="col-sm-10">
+								<input type="number" value="0" ng-model="pos5selected.gamegoals" ng-required="true" class="form-control">
+							</div>
+							<label class="col-sm-2" for="asists5">Assists</label>
+							<div class="col-sm-10">
+								<input type="number" value="0" ng-model="pos5selected.gameassists" ng-required="true" class="form-control">	
+							</div>
+							<label class="col-sm-2" for="yellow5">Yellow Cards</label>
+							<div class="col-sm-10">
+								<input type="number" value="0" ng-model="pos5selected.gameyellow" ng-required="true" class="form-control">	
+							</div>
+							<label class="col-sm-2" for="red5">Red Cards</label>
+							<div class="col-sm-10">
+								<input type="number" value="0" ng-model="pos5selected.gamered" ng-required="true" class="form-control">	
+							</div>							
+						</div>							
+					</div>							
+				</div>					
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col-xs-12">
+				<select ng-options="player as player.fullname for player in players" ng-model="pos6selected" ng-required="true" class="form-control"></select>
+				<button type="button" ng-click="showStats6 = !showStats6" class="btn btn-default">Stats 6</button>
+				<div class="row" ng-show="showStats6">
+					<div class="col-xs-12">
+						<div class="well clearfix">
+							<label class="col-sm-2" for="goals6">Goals</label>
+							<div class="col-sm-10">
+								<input type="number" value="0" ng-model="pos6selected.gamegoals" ng-required="true" class="form-control">
+							</div>
+							<label class="col-sm-2" for="asists6">Assists</label>
+							<div class="col-sm-10">
+								<input type="number" value="0" ng-model="pos6selected.gameassists" ng-required="true" class="form-control">	
+							</div>
+							<label class="col-sm-2" for="yellow6">Yellow Cards</label>
+							<div class="col-sm-10">
+								<input type="number" value="0" ng-model="pos6selected.gameyellow" ng-required="true" class="form-control">	
+							</div>
+							<label class="col-sm-2" for="red6">Red Cards</label>
+							<div class="col-sm-10">
+								<input type="number" value="0" ng-model="pos6selected.gamered" ng-required="true" class="form-control">	
+							</div>							
+						</div>								
+					</div>							
+				</div>									
+			</div>			
+		</div>	
+		<div class="row">
+			<div class="col-xs-12">
+				<select ng-options="player as player.fullname for player in players" ng-model="pos7selected" ng-required="true" class="form-control">
+				</select>
+				<button type="button" ng-click="showStats7 = !showStats7" class="btn btn-default">Stats 7</button>
+				<div class="row" ng-show="showStats7">
+					<div class="col-xs-12">
+						<div class="well clearfix">
+							<label class="col-sm-2" for="goals7">Goals</label>
+							<div class="col-sm-10">
+								<input type="number" value="0" ng-model="pos7selected.gamegoals" ng-required="true" class="form-control">
+							</div>
+							<label class="col-sm-2" for="asists7">Assists</label>
+							<div class="col-sm-10">
+								<input type="number" value="0" ng-model="pos7selected.gameassists" ng-required="true" class="form-control">	
+							</div>
+							<label class="col-sm-2" for="yellow7">Yellow Cards</label>
+							<div class="col-sm-10">
+								<input type="number" value="0" ng-model="pos7selected.gameyellow" ng-required="true" class="form-control">	
+							</div>
+							<label class="col-sm-2" for="red7">Red Cards</label>
+							<div class="col-sm-10">
+								<input type="number" value="0" ng-model="pos7selected.gamered" ng-required="true" class="form-control">	
+							</div>							
+						</div>								
+					</div>							
+				</div>										
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col-xs-12">
+				<select ng-options="player as player.fullname for player in players" ng-model="pos8selected" ng-required="true" class="form-control">
+				</select>	
+				<button type="button" ng-click="showStats8 = !showStats8" class="btn btn-default">Stats 8</button>
+				<div class="row" ng-show="showStats8">
+					<div class="col-xs-12">
+						<div class="well clearfix">
+							<label class="col-sm-2" for="goals8">Goals</label>
+							<div class="col-sm-10">
+								<input type="number" value="0" ng-model="pos8selected.gamegoals" ng-required="true" class="form-control">
+							</div>
+							<label class="col-sm-2" for="asists8">Assists</label>
+							<div class="col-sm-10">
+								<input type="number" value="0" ng-model="pos8selected.gameassists" ng-required="true" class="form-control">	
+							</div>
+							<label class="col-sm-2" for="yellow8">Yellow Cards</label>
+							<div class="col-sm-10">
+								<input type="number" value="0" ng-model="pos8selected.gameyellow" ng-required="true" class="form-control">	
+							</div>
+							<label class="col-sm-2" for="red8">Red Cards</label>
+							<div class="col-sm-10">
+								<input type="number" value="0" ng-model="pos8selected.gamered" ng-required="true" class="form-control">	
+							</div>							
+						</div>								
+					</div>							
+				</div>									
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col-xs-12">
+				<select ng-options="player as player.fullname for player in players" ng-model="pos9selected" ng-required="true" class="form-control">
+				</select>	
+				<button type="button" ng-click="showStats9 = !showStats9" class="btn btn-default">Stats 9</button>
+				<div class="row" ng-show="showStats9">
+					<div class="col-xs-12">
+						<div class="well clearfix">
+							<label class="col-sm-2" for="goals9">Goals</label>
+							<div class="col-sm-10">
+								<input type="number" value="0" ng-model="pos9selected.gamegoals" ng-required="true" class="form-control">
+							</div>
+							<label class="col-sm-2" for="asists9">Assists</label>
+							<div class="col-sm-10">
+								<input type="number" value="0" ng-model="pos9selected.gameassists" ng-required="true" class="form-control">	
+							</div>
+							<label class="col-sm-2" for="yellow9">Yellow Cards</label>
+							<div class="col-sm-10">
+								<input type="number" value="0" ng-model="pos9selected.gameyellow" ng-required="true" class="form-control">	
+							</div>
+							<label class="col-sm-2" for="red9">Red Cards</label>
+							<div class="col-sm-10">
+								<input type="number" value="0" ng-model="pos9selected.gamered" ng-required="true" class="form-control">	
+							</div>							
+						</div>								
+					</div>							
+				</div>					
+			</div>
+		</div>												
+		<div class="row">
+			<div class="col-xs-12">
+				<select ng-options="player as player.fullname for player in players" ng-model="pos10selected" ng-required="true" class="form-control">
+				</select>				
+				<button type="button" ng-click="showStats10 = !showStats10" class="btn btn-default">Stats 10</button>
+				<div class="row" ng-show="showStats10">
+					<div class="col-xs-12">
+						<div class="well clearfix">
+							<label class="col-sm-2" for="goals10">Goals</label>
+							<div class="col-sm-10">
+								<input type="number" value="0" ng-model="pos10selected.gamegoals" ng-required="true" class="form-control">
+							</div>
+							<label class="col-sm-2" for="asists10">Assists</label>
+							<div class="col-sm-10">
+								<input type="number" value="0" ng-model="pos10selected.gameassists" ng-required="true" class="form-control">	
+							</div>
+							<label class="col-sm-2" for="yellow10">Yellow Cards</label>
+							<div class="col-sm-10">
+								<input type="number" value="0" ng-model="pos10selected.gameyellow" ng-required="true" class="form-control">	
+							</div>
+							<label class="col-sm-2" for="red10">Red Cards</label>
+							<div class="col-sm-10">
+								<input type="number" value="0" ng-model="pos10selected.gamered" ng-required="true" class="form-control">	
+							</div>							
+						</div>							
+					</div>							
+				</div>				
+			</div>
+		</div>		
+		<div class="row">
+			<div class="col-xs-12">
+				<select ng-options="player as player.fullname for player in players" ng-model="pos11selected" ng-required="true" class="form-control">
+				</select>
+				<button type="button" ng-click="showStats11 = !showStats11" class="btn btn-default">Stats 11</button>
+				<div class="row" ng-show="showStats11">
+					<div class="col-xs-12">
+						<div class="well clearfix">
+							<label class="col-sm-2" for="goals11">Goals</label>
+							<div class="col-sm-10">
+								<input type="number" value="0" ng-model="pos11selected.gamegoals" ng-required="true" class="form-control">
+							</div>
+							<label class="col-sm-2" for="asists11">Assists</label>
+							<div class="col-sm-10">
+								<input type="number" value="0" ng-model="pos11selected.gameassists" ng-required="true" class="form-control">	
+							</div>
+							<label class="col-sm-2" for="yellow11">Yellow Cards</label>
+							<div class="col-sm-10">
+								<input type="number" value="0" ng-model="pos11selected.gameyellow" ng-required="true" class="form-control">	
+							</div>
+							<label class="col-sm-2" for="red11">Red Cards</label>
+							<div class="col-sm-10">
+								<input type="number" value="0" ng-model="pos11selected.gamered" ng-required="true" class="form-control">	
+							</div>							
+						</div>								
+					</div>							
+				</div>									
+			</div>
+		</div>
+
+		<h3>Subs</h3>
+
+		<div class="row">
+			<div class="col-xs-12">
+				<select ng-options="player as player.fullname for player in players" ng-model="sub1" class="form-control">
+				</select>
+				<button type="button" ng-click="showSubStats1 = !showSubStats1" class="btn btn-default">Stats 11</button>
+				<div class="row" ng-show="showSubStats1">
+					<div class="col-xs-12">
+						<div class="well clearfix">
+							<label class="col-sm-2" for="goals11">Did player come on?</label>
+							<div class="col-sm-10">
+								<input type="checkbox" ng-model="subon1" ng-change="findShitOut()" class="form-control">
+							</div>	
+							<div ng-show="subon1">	
+								<label class="col-sm-2" for="goals11">On for</label>
+								<div class="col-sm-10">
+								 <select ng-model="sub1.playeronfor" ng-options="player as player.fullname for player in starting11">
+								</select> 									
+								</div>	
+								<label class="col-sm-2" for="goals11">Minute on</label>
+								<div class="col-sm-10">
+									<input type="number" ng-model="sub1.subminuteon" class="form-control">
+								</div>																				
+								<label class="col-sm-2" for="goals11">Goals</label>
+								<div class="col-sm-10">
+									<input type="number" ng-model="sub1.subgoals" class="form-control">
+								</div>
+								<label class="col-sm-2" for="subasists">Assists</label>
+								<div class="col-sm-10">
+									<input type="number" ng-model="sub1.subassists" class="form-control">	
+								</div>
+								<label class="col-sm-2" for="subyellow1">Yellow Cards</label>
+								<div class="col-sm-10">
+									<input type="number" ng-model="sub1.subyellow" class="form-control">	
+								</div>
+								<label class="col-sm-2" for="subred1">Red Cards</label>
+								<div class="col-sm-10">
+									<input type="number" ng-model="sub1.subred" class="form-control">	
+								</div>
+							</div>							
+						</div>							
+					</div>							
+				</div>									
+			</div>
+		</div>		
+
+		<div class="row">
+			<div class="col-xs-12">
+				<select ng-options="player as player.fullname for player in players" ng-model="sub2" class="form-control">
+				</select>
+				<button type="button" ng-click="showSubStats2 = !showSubStats2" class="btn btn-default">Stats 11</button>
+				<div class="row" ng-show="showSubStats2">
+					<div class="col-xs-12">
+						<div class="well clearfix">
+							<label class="col-sm-2" for="goals11">Did player come on?</label>
+							<div class="col-sm-10">
+								<input type="checkbox" ng-model="subon2" class="form-control">
+							</div>	
+							<div ng-show="subon2">	
+								<label class="col-sm-2" for="goals11">On for</label>
+								<div class="col-sm-10">
+								 <select ng-model="sub2.playeronfor" ng-options="player as player.fullname for player in starting11">
+								</select> 									
+								</div>	
+								<label class="col-sm-2" for="goals11">Minute on</label>
+								<div class="col-sm-10">
+									<input type="number" ng-model="sub2.subminuteon" class="form-control">
+								</div>																				
+								<label class="col-sm-2" for="goals11">Goals</label>
+								<div class="col-sm-10">
+									<input type="number" ng-model="sub2.subgoals" class="form-control">
+								</div>
+								<label class="col-sm-2" for="subasists2">Assists</label>
+								<div class="col-sm-10">
+									<input type="number" ng-model="sub2.subassists" class="form-control">	
+								</div>
+								<label class="col-sm-2" for="subyellow2">Yellow Cards</label>
+								<div class="col-sm-10">
+									<input type="number" ng-model="sub2.subyellow" class="form-control">	
+								</div>
+								<label class="col-sm-2" for="subred2">Red Cards</label>
+								<div class="col-sm-10">
+									<input type="number" ng-model="sub2.subred" class="form-control">	
+								</div>
+							</div>							
+						</div>							
+					</div>							
+				</div>									
+			</div>
+		</div>	
+
+		<div class="row">
+			<div class="col-xs-12">
+				<select ng-options="player as player.fullname for player in players" ng-model="sub3" class="form-control">
+				</select>
+				<button type="button" ng-click="showSubStats3 = !showSubStats3" class="btn btn-default">Stats 11</button>
+				<div class="row" ng-show="showSubStats3">
+					<div class="col-xs-12">
+						<div class="well clearfix">
+							<label class="col-sm-2" for="goals11">Did player come on?</label>
+							<div class="col-sm-10">
+								<input type="checkbox" ng-model="subon3" class="form-control">
+							</div>	
+							<div ng-show="subon3">	
+								<label class="col-sm-2" for="goals11">On for</label>
+								<div class="col-sm-10">
+								 <select ng-model="sub3.playeronfor" ng-options="player as player.fullname for player in starting11">
+								</select> 									
+								</div>	
+								<label class="col-sm-2" for="goals11">Minute on</label>
+								<div class="col-sm-10">
+									<input type="number" ng-model="sub3.subminuteon" class="form-control">
+								</div>																				
+								<label class="col-sm-2" for="goals11">Goals</label>
+								<div class="col-sm-10">
+									<input type="number" ng-model="sub3.subgoals" class="form-control">
+								</div>
+								<label class="col-sm-2" for="subasists3">Assists</label>
+								<div class="col-sm-10">
+									<input type="number" ng-model="sub3.subassists" class="form-control">	
+								</div>
+								<label class="col-sm-2" for="subyellow3">Yellow Cards</label>
+								<div class="col-sm-10">
+									<input type="number" ng-model="sub3.subyellow" class="form-control">	
+								</div>
+								<label class="col-sm-2" for="subred3">Red Cards</label>
+								<div class="col-sm-10">
+									<input type="number" ng-model="sub3.subred" class="form-control">	
+								</div>
+							</div>							
+						</div>							
+					</div>							
+				</div>									
+			</div>
+		</div>			
+
+		<div class="input-group-btn">
+	  		<button type="submit" class="btn btn-default" ng-disabled="myForm.$invalid">Add Result</button>
+	  		<div class="btn btn-default" ng-click="autopick()">Autopick</div>
+		</div>		  
+		</div>								
+	</div> 
+</form>

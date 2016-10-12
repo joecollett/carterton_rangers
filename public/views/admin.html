@@ -1,0 +1,48 @@
+<h2>Add a Player</h2>
+<p>Type a meeting name and hit + </p>
+<form class="form-horizontal" name="myForm" ng-submit="addPlayer()" novalidate>
+	 <div class="input-group">
+	  	<input type="text" class="form-control" name="playerfirstname" ng-required="true" placeholder="Player first name" ng-model="playerfirstname">
+	  	<input type="text" class="form-control" name="playersecondname" ng-required="true" placeholder="Player second name" ng-model="playersecondname">	  	
+	  	<input type="text" class="form-control" name="playerno" ng-required="true" placeholder="Player squad number" ng-model="playerno">	  	
+		<input type="text" class="form-control" name="playerposition" ng-required="true" placeholder="Player position" ng-model="playerposition">	
+		<input type="text" class="form-control" name="playerdob" ng-required="true" placeholder="Player Date of birth" ng-model="playerdob">	
+		<textarea type="textarea" class="form-control" name="playerbio" ng-required="true" placeholder="Player bio" ng-model="playerbio"></textarea>	
+
+		<input type="filepicker"  ng-click="pickFile()">
+		<input type="text" ng-model="playerimage" name="playerimage" ng-required="true" class="form-control" value="{{playerimage}}">
+		
+
+		<div class="input-group-btn">
+	  		<button type="submit" class="btn btn-default" ng-disabled="myForm.$invalid">+</button>
+		</div>
+
+		{{fullname}}
+	</div> 
+</form>
+<h2>Players</h2>
+<div class="meeting" ng-repeat="(key, player) in players ">
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="label label-default">{{player.firstname}} {{player.secondname}}</div>
+		</div>	
+	</div>		
+	<div class="row">
+		<div class="col-xs-12">
+			<button class="btn btn-danger btn-xs" ng-click="deletePlayer(key)">Delete</button>
+			<button ng-click="showDetails = !showDetails">Update</button>
+			<div ng-show="showDetails">
+			    <pre>{{ player | json }}</pre>
+			    <input ng-model="player.firstname" class="form-control" ng-change="players.$save(player)" type="text" />
+			    <input ng-model="player.secondname" class="form-control" ng-change="players.$save(player)" type="text" />
+			    <input ng-model="player.number" class="form-control" ng-change="players.$save(player)" type="text" />
+			    <input ng-model="player.position" class="form-control" ng-change="players.$save(player)" type="text" />	
+			    <input ng-model="player.dob" class="form-control" ng-change="players.$save(player)" type="text" />
+			    <input ng-model="player.playerimage" class="form-control" ng-change="players.$save(player)" type="text" />	
+			    <input ng-model="player.apps" class="form-control" ng-change="players.$save(player)" type="number" />				    
+				<textarea ng-model="player.bio" type="textarea" class="form-control" ng-change="players.$save(player)"></textarea>		
+				<button ng-click="showDetails = !showDetails">Close</button>		    	    		    
+			</div>			
+		</div>
+	</div>	
+</div>

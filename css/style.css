@@ -2,7 +2,7 @@
 
 /** General **/
 body {
-    background:#ffffff;
+    background:#f2f2f2;
     font-family: 'Fira Sans', sans-serif;
 }
 
@@ -10,8 +10,8 @@ body {
 
 .top-header {
   height: 110px;
-  background: #000000;
-  color: #fff;
+  background: #fff;
+  color: #333;
 }
 .top-header-text {
   padding-left: 145px;
@@ -34,10 +34,11 @@ body {
 .navbar {
   position: relative;
   min-height: 45px;
-  background: #333;
-  color: #fff;
+  background: #fff;
+  color: #333;
   border: none;
   border-radius: 0px;
+  border-top: 1px solid #ccc;
 }
 .navbar-brand {
     float: left;
@@ -51,7 +52,7 @@ body {
   margin-left: 133px;
 }
 .navbar-default .navbar-nav > li > a {
-  color:#fff;
+  color:#333;
 }
 
 /** Loading Spinner **/
@@ -113,4 +114,40 @@ body {
     box-shadow: 0 -2em;
     height: 5em;
   }
+}
+
+/** HOME PAGE **/
+.main-news {
+  margin-bottom:30px;
+}
+.main-news img {
+  height:600px;
+  width:100%;
+}
+.news-main {
+  position:relative;
+}
+.news-main-titlearea {
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  background: #333;
+  opacity: 0.8;
+  padding: 20px 50px;
+  color: #fff;
+}
+.news-main-caption .title {
+  color:#fff;
+}
+.news-main-title {
+  font-size: 24px;
+  margin-bottom: 7px;
+}
+.news-main-caption {
+  font-size: 14px;
+  opacity: 0.9;
+}
+.secondary-secondary img {
+  height:200px;
+  width:100%;
 }

@@ -44,8 +44,11 @@ myApp.controller('newsController', ['$scope', '$rootScope','$firebaseAuth', '$fi
 				newsInfo.$add({
 					result: $scope.result,
 					mainImage: $scope.newsImage,
+					newsTitle: $scope.newsTitle,
 					caption: $scope.newsCaption,
-					newsType: $scope.newsType
+					newsType: $scope.newsType,
+					newsStory: $scope.newsStory,
+					dateAdded: Firebase.ServerValue.TIMESTAMP
 				}).then(function(playersRef){
 
 				});

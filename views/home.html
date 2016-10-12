@@ -1,23 +1,45 @@
-<div class="meeting" ng-repeat="(key, item) in news ">
-	<div class="row">
-		<div class="col-xs-12">
-			<a href="#/news/{{item.$id}}">
-				<img ng-src="{{item.mainImage}}" style="width: 150px; height:150px"/>
-				<div>{{item.caption}}</div>
-			</a>
+<div>
+	<div class="main-news" ng-repeat="item in news | orderBy: '-dateAdded' | limitTo:1 ">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="news-main">
+					<a href="#/news/{{item.$id}}">
+						<img ng-src="{{item.mainImage}}"/>
+						<div class="news-main-titlearea">
+							<div class="news-main-title">{{item.newsTitle}}</div>
+							<div class="news-main-caption">{{item.caption}}</div>
+						</div>
+					</a>
+				</div>
+			</div>	
 		</div>	
 	</div>	
-</div>	
+	<div class="row">
+		<div class="secondary-news" ng-repeat="item in news | orderBy: '-dateAdded' | limitTo:4 " ng-show="!$first">
+			<div class="col-xs-4">
+				<div class="secondary-secondary">
+					<a href="#/news/{{item.$id}}">
+						<img class="img-responsive" ng-src="{{item.mainImage}}"/>
+						<div class="news-secondary-titlearea">
+							<div class="news-secondary-title">{{item.newsTitle}}</div>
+							<div class="news-secondary-caption">{{item.caption}}</div>
+						</div>
+					</a>
+				</div>
+			</div>	
+		</div>				
+	</div>
 
-<div class="meeting" ng-repeat="(key, player) in players ">
-	<div class="row">
-		<div class="col-xs-12">
-			<a href="#/player/{{player.$id}}">
-				<img ng-src="{{player.playerimage}}" style="width: 150px; height:150px"/>
-				<div>{{player.firstname}} {{player.secondname}}</div>
-			</a>
-			<div>{{player.dob }}</div>
-			<div>{{player.number}}</div>
+	<div class="meeting" ng-repeat="player in players">
+		<div class="row">
+			<div class="col-xs-12">
+				<a href="#/player/{{player.$id}}">
+					<img ng-src="{{player.playerimage}}" style="width: 150px; height:150px"/>
+					<div>{{player.firstname}} {{player.secondname}}</div>
+				</a>
+				<div>{{player.dob }}</div>
+				<div>{{player.number}}</div>
+			</div>	
 		</div>	
 	</div>	
-</div>	
+</div>

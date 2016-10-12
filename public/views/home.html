@@ -1,0 +1,23 @@
+<div class="meeting" ng-repeat="(key, item) in news | orderBy: '-dateAdded' | limitTo:1 ">
+	<div class="row">
+		<div class="col-xs-12">
+			<a href="#/news/{{item.$id}}">
+				<img ng-src="{{item.mainImage}}" style="width: 150px; height:150px"/>
+				<div>{{item.caption}}</div>
+			</a>
+		</div>	
+	</div>	
+</div>	
+
+<div class="meeting" ng-repeat="(key, player) in players ">
+	<div class="row">
+		<div class="col-xs-12">
+			<a href="#/player/{{player.$id}}">
+				<img ng-src="{{player.playerimage}}" style="width: 150px; height:150px"/>
+				<div>{{player.firstname}} {{player.secondname}}</div>
+			</a>
+			<div>{{player.dob }}</div>
+			<div>{{player.number}}</div>
+		</div>	
+	</div>	
+</div>	
