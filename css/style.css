@@ -61,6 +61,7 @@ body {
 }
 .navbar-default .navbar-nav > li > a {
   color:#333;
+  text-transform: uppercase;
 }
 
 /** Loading Spinner **/
