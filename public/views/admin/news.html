@@ -1,26 +1,58 @@
 <h2>Add a News Item</h2>
 <p>Type a meeting name and hit + </p>
 <form class="form-horizontal" name="myForm" ng-submit="addNews()" novalidate>
-	 <div class="input-group">
-		<select ng-model="newsType" class="form-control">
-			<option value=""></option>
-			<option value="Player News">Player News</option>
-			<option value="Team News">Team News</option>
-			<option value="Match Report">Match Report</option>
-			<option value="">Other</option>
-		</select>			 	
-		<select ng-show="newsType === 'Match Report'" ng-options='result as (result.home.name + " V " + result.away.name + " - " + result.dateplayed) for result in results' ng-model="result" class="form-control" ng-required="newsType === 'Match Report'">
-			<option value=""></option>
-		</select>		
-		
-		<input type="text" ng-model="newsCaption" name="newsCaption" ng-required="true" class="form-control">
-		<input type="filepicker"  ng-click="pickFile()">
-		<input type="text" ng-model="newsImage" name="newsImage" ng-required="true" class="form-control" value="{{newsImage}}">
-		
-
-		<div class="input-group-btn">
-	  		<button type="submit" class="btn btn-default" ng-disabled="myForm.$invalid">+</button>
+	<div class="form-group">
+	 	<div class="col-xs-12">
+	 		<label for="newsType">News Type</label>
+			<select ng-model="newsType" id="newsType" class="form-control">
+				<option value=""></option>
+				<option value="Player News">Player News</option>
+				<option value="Team News">Team News</option>
+				<option value="Match Report">Match Report</option>
+				<option value="">Other</option>
+			</select>		 		
+	 	</div>		 		
+	</div>	
+	<div class="form-group" ng-show="newsType === 'Match Report'">
+		<div class="col-xs-12">
+			<label for="match">Result</label>
+			<select ng-options='result as (result.home.name + " V " + result.away.name + " - " + result.dateplayed) for result in results' ng-model="result" class="form-control" ng-required="newsType === 'Match Report'">
+				<option value=""></option>
+			</select>				
 		</div>
+	</div>	
 
-	</div> 
+	<div class="form-group">
+		<div class="col-xs-12">
+			<label for="newsTitle">Title</label>
+			<input type="text" id="newsTitle" ng-model="newsTitle" name="newsTitle" ng-required="true" class="form-control">	
+		</div>
+	</div>
+
+	<div class="form-group">
+		<div class="col-xs-12">
+			<label for="newsCaption">Caption</label>
+			<input type="text" ng-model="newsCaption" name="newsCaption" ng-required="true" class="form-control">
+		</div>
+	</div>	
+
+	<div class="form-group">
+		<div class="col-xs-12">
+			<label for="newsImage">Image</label>
+			<input type="filepicker"  ng-click="pickFile()">
+			<input type="text" ng-model="newsImage" name="newsImage" ng-required="true" class="form-control" value="{{newsImage}}">
+		</div>
+	</div>		
+
+	<div class="form-group">
+		<div class="col-xs-12">
+			<label for="newsStory">Main</label>
+			<textarea id="newsStory" ng-model="newsStory" cols="30" ng-required="true" rows="10" class="form-control"></textarea>
+		</div>
+	</div>	
+
+	<div class="input-group-btn">
+  		<button type="submit" class="btn btn-default" ng-disabled="myForm.$invalid">+</button>
+	</div>
+
 </form>

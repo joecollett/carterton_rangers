@@ -49,20 +49,21 @@ body {
   border-top: 1px solid #ccc;
 }
 .navbar-brand {
-    float: left;
-    height: 71px;
-    padding: 10px 15px 8px;
-    font-size: 18px;
-    line-height: 20px;
+  float: left;
+  height: 71px;
+  padding: 10px 38px 8px 0px;
+  font-size: 18px;
+  line-height: 20px;
 }
 .navbar-nav {
   float: left;
   margin-left: 133px;
 }
 .navbar-default .navbar-nav > li > a {
-  color:#333;
+  color: #333;
   text-transform: uppercase;
-  padding: 10px 20px;
+  padding: 13px 20px 9px;
+  font-size: 15px;
 }
 
 /** Loading Spinner **/
